@@ -1,0 +1,45 @@
+manifestVersion: 1
+id: deepak-openseo
+name: OpenSEO
+tagline: Open-source alternative to Semrush and Ahrefs
+icon: https://raw.githubusercontent.com/every-app/open-seo/main/public/android-chrome-512x512.png
+category: developer
+version: "0.0.9"
+port: 8781
+description: >-
+  OpenSEO is an open-source SEO platform (alternative to Semrush/Ahrefs).
+
+
+  This Umbrel package runs the official Docker image from every-app/open-seo.
+  Docker self-host mode uses local_noauth; Umbrel's app proxy still protects
+  access with your Umbrel login.
+
+
+  You will need a DataForSEO API key for SEO data (set DATAFORSEO_API_KEY in
+  the app data / env). Optional OPENROUTER_API_KEY enables AI features.
+
+
+  Source: https://github.com/every-app/open-seo
+developer: every-app
+website: https://github.com/every-app/open-seo
+submitter: Deepak Sahu
+submission: https://github.com/every-app/open-seo
+repo: https://github.com/every-app/open-seo
+support: https://github.com/every-app/open-seo/issues
+gallery:
+  - https://raw.githubusercontent.com/every-app/open-seo/main/public/android-chrome-512x512.png
+releaseNotes: >-
+  Initial community packaging using ghcr.io/every-app/open-seo:latest.
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+environment:
+  - name: DATAFORSEO_API_KEY
+    services:
+      - server
+    note: Base64 of email:password from DataForSEO (required for SEO data).
+  - name: OPENROUTER_API_KEY
+    services:
+      - server
+    note: Optional. Enables SAM AI features.

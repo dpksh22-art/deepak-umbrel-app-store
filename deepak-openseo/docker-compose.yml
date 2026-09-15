@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: deepak-openseo_server_1
+      APP_PORT: 3001
+
+  server:
+    image: ghcr.io/every-app/open-seo:latest@sha256:79f19fb7100e71133effa43898a2ba1ad4702075f3127e6ca91cd076e1101538
+    restart: on-failure
+    stop_grace_period: 1m
+    environment:
+      - CLOUDFLARE_INCLUDE_PROCESS_ENV=true
+      - PORT=3001
+      - AUTH_MODE=local_noauth
+      - OPENSEO_TELEMETRY_DISABLED=1
+      - DO_NOT_TRACK=1
+      - VITE_SHOW_DEVTOOLS=false
+      - DATAFORSEO_API_KEY=${DATAFORSEO_API_KEY:-}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+    volumes:
+      - ${APP_DATA_DIR}/data:/app/.wrangler

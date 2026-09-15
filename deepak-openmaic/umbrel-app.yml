@@ -1,0 +1,36 @@
+manifestVersion: 1
+id: deepak-openmaic
+name: OpenMAIC
+tagline: AI multi-agent interactive classroom
+icon: https://raw.githubusercontent.com/THU-MAIC/OpenMAIC/main/public/openmaic-mark.png
+category: ai
+version: "1.0.3"
+port: 8780
+description: >-
+  OpenMAIC (Open Multi-Agent Interactive Classroom) generates immersive,
+  multi-agent learning experiences for almost any topic.
+
+
+  This package builds from the upstream GitHub release on first install, so the
+  initial install can take several minutes.
+
+
+  Configure at least one LLM provider API key after install (OpenAI, Anthropic,
+  Gemini, Ollama, etc.). See upstream docs for ACCESS_CODE and provider setup.
+
+
+  Source: https://github.com/THU-MAIC/OpenMAIC
+developer: THU-MAIC
+website: https://github.com/THU-MAIC/OpenMAIC
+submitter: Deepak Sahu
+submission: https://github.com/THU-MAIC/OpenMAIC
+repo: https://github.com/THU-MAIC/OpenMAIC
+support: https://github.com/THU-MAIC/OpenMAIC/issues
+gallery:
+  - https://raw.githubusercontent.com/THU-MAIC/OpenMAIC/main/public/openmaic-mark.png
+releaseNotes: >-
+  Initial community packaging of OpenMAIC v1.0.3 (built from source on install).
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
