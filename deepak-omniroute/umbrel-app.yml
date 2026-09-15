@@ -1,0 +1,40 @@
+manifestVersion: 1
+id: deepak-omniroute
+name: OmniRoute
+tagline: Free AI gateway — one endpoint, 350+ providers
+icon: https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/public/icon-512.png
+category: ai
+version: "3.8.50"
+port: 20129
+description: >-
+  Never stop coding. OmniRoute is a free MIT AI gateway with one OpenAI-compatible
+  endpoint for 352 providers (150+ free) and 1200+ models including Kimi, Claude,
+  GPT, Gemini, GLM, DeepSeek, and MiniMax.
+
+
+  Works with Claude Code, Codex, Cursor, OpenCode, Cline, Copilot, and any
+  OpenAI-compatible tool. Features quota-aware auto-fallback, RTK+Caveman
+  compression (saves 15–95% tokens), MCP/A2A support, and a built-in dashboard.
+
+
+  Built by 550+ contributors. Source: https://github.com/diegosouzapw/OmniRoute
+
+
+  Note: If you already have the official Umbrel OmniRoute app installed (port
+  20128), do not install both at once — this community package uses port 20129
+  to avoid a conflict.
+developer: Diego Souza
+website: https://omniroute.online
+submitter: Deepak Sahu
+submission: https://github.com/diegosouzapw/OmniRoute
+repo: https://github.com/diegosouzapw/OmniRoute
+support: https://github.com/diegosouzapw/OmniRoute/issues
+gallery:
+  - https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/public/icon-512.png
+releaseNotes: >-
+  Community packaging of OmniRoute v3.8.50 (diegosouzapw/omniroute) for the Deepak
+  Umbrel App Store. Dashboard and API on port 20129.
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
