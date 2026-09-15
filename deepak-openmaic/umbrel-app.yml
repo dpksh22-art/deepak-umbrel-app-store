@@ -4,15 +4,14 @@ name: OpenMAIC
 tagline: AI multi-agent interactive classroom
 icon: https://raw.githubusercontent.com/THU-MAIC/OpenMAIC/main/public/openmaic-mark.png
 category: ai
-version: "1.0.3"
+version: "1.0.4"
 port: 8780
 description: >-
   OpenMAIC (Open Multi-Agent Interactive Classroom) generates immersive,
   multi-agent learning experiences for almost any topic.
 
 
-  This package builds from the upstream GitHub release on first install, so the
-  initial install can take several minutes.
+  This package uses a prebuilt community Docker image (devprincekumar/openmaic).
 
 
   Configure at least one LLM provider API key after install (OpenAI, Anthropic,
@@ -29,7 +28,7 @@ support: https://github.com/THU-MAIC/OpenMAIC/issues
 gallery:
   - https://raw.githubusercontent.com/THU-MAIC/OpenMAIC/main/public/openmaic-mark.png
 releaseNotes: >-
-  Initial community packaging of OpenMAIC v1.0.3 (built from source on install).
+  Switch to prebuilt image so Umbrel can install without a local Docker build.
 dependencies: []
 path: ""
 defaultUsername: ""

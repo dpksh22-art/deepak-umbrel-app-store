@@ -4,7 +4,7 @@ name: God's Eye View
 tagline: Live planes, ships, satellites and more on a 3D globe
 icon: https://raw.githubusercontent.com/bilawalsidhu/gods-eye-view/main/public/logo.svg
 category: networking
-version: "1.0.0"
+version: "1.0.1"
 port: 8782
 description: >-
   God's Eye View is a browser-based live spatial intelligence console — planes,
@@ -17,7 +17,7 @@ description: >-
 
 
   Note: Upstream is oriented around Pinokio / local npm run; this Umbrel package
-  runs the same Node/Vite server in Docker. First install builds from GitHub.
+  uses a prebuilt community Docker image for install on Umbrel.
 
 
   Source: https://github.com/bilawalsidhu/gods-eye-view
@@ -30,7 +30,7 @@ support: https://github.com/bilawalsidhu/gods-eye-view/issues
 gallery:
   - https://raw.githubusercontent.com/bilawalsidhu/gods-eye-view/main/public/logo.svg
 releaseNotes: >-
-  Initial community packaging of God's Eye View (built from source on install).
+  Switch to prebuilt image so Umbrel can install without a local Docker build.
 dependencies: []
 path: ""
 defaultUsername: ""
