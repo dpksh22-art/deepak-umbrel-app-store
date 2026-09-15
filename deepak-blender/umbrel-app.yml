@@ -1,0 +1,37 @@
+manifestVersion: 1
+id: deepak-blender
+name: Blender
+tagline: Free and open-source 3D creation suite
+icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/blender-logo.png
+category: files
+version: "4.4.3"
+port: 8790
+description: >-
+  Blender is a free and open-source 3D computer graphics software toolset used for
+  creating animated films, visual effects, art, 3D printed models, motion graphics,
+  interactive 3D applications, virtual reality, and computer games.
+
+
+  This Umbrel package runs the LinuxServer Blender container with a browser-based
+  desktop UI (KasmVNC). Open the app from umbrelOS to use Blender in your browser.
+
+
+  Notes:
+  - GPU rendering is not enabled out of the box; the workspace runs accelerated when
+    hardware allows.
+  - Pinned to Blender 4.4.3 (pre-Selkies) so it works with Umbrel's HTTP app proxy.
+    Newer LinuxServer images require HTTPS and are not compatible with the proxy.
+developer: Blender Foundation
+website: https://www.blender.org/
+submitter: Deepak Sahu
+submission: https://github.com/linuxserver/docker-blender
+repo: https://github.com/linuxserver/docker-blender
+support: https://github.com/linuxserver/docker-blender/issues
+gallery:
+  - https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/blender-logo.png
+releaseNotes: >-
+  Initial community packaging for Umbrel using linuxserver/blender 4.4.3-ls169.
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
