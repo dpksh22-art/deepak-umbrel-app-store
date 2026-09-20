@@ -4,7 +4,7 @@ name: n8n Sandbox
 tagline: Code sandbox for n8n Assistant (self-hosted)
 icon: https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png
 category: developer
-version: "1.3.5"
+version: "1.3.6"
 port: 3200
 description: >-
   Self-hosted n8n Sandbox Service (API + privileged Docker-in-Docker runner)
@@ -31,7 +31,7 @@ repo: https://github.com/n8n-io/n8n-sandbox-service
 support: https://github.com/n8n-io/n8n-sandbox-service/issues
 gallery: []
 releaseNotes: >-
-  1.3.5: fresh secrets, correct Tailscale URL, no host port publish, pin API
+  1.3.6: fresh secrets, correct Tailscale URL, no host port publish, pin API
   images to 1.3.4.
 dependencies: []
 path: ""
