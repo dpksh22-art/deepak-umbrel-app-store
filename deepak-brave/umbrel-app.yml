@@ -1,0 +1,37 @@
+manifestVersion: 1
+id: deepak-brave
+name: Brave
+tagline: Private browser in your browser (LinuxServer Selkies)
+icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/brave-logo.png
+category: files
+version: "1.0.0"
+port: 8791
+description: >-
+  Brave is a fast, private web browser. This Umbrel package runs the official
+  LinuxServer Brave container and streams the desktop UI to your browser via
+  Selkies.
+
+
+  Open the app from umbrelOS (port 8791). First load can take a minute while
+  Brave starts. Shared memory is set to 1 GB as required by the image.
+
+
+  Notes:
+  - Uses HTTP port 3000 behind Umbrel's app proxy (Selkies reverse-proxy mode).
+  - Some browser features need a secure context; if the UI misbehaves over plain
+    HTTP, try Tailscale HTTPS or accept that WebRTC may be limited on LAN HTTP.
+  - Profile data persists under this app's data folder.
+developer: Brave Software (packaged by LinuxServer.io)
+website: https://brave.com/
+submitter: Deepak Sahu
+submission: https://github.com/linuxserver/docker-brave
+repo: https://github.com/linuxserver/docker-brave
+support: https://github.com/linuxserver/docker-brave/issues
+gallery:
+  - https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/brave-logo.png
+releaseNotes: >-
+  Initial Umbrel packaging of lscr.io/linuxserver/brave (Selkies web UI, shm 1GB).
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
