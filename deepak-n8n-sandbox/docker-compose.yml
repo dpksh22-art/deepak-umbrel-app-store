@@ -7,7 +7,7 @@ services:
       APP_PORT: 8080
 
   certs:
-    image: ghcr.io/n8n-io/n8n-sandbox-service-api:1.4.0
+    image: ghcr.io/n8n-io/n8n-sandbox-service-api:1.3.4
     user: "0:0"
     entrypoint: ["sh", "-c"]
     command:
@@ -16,7 +16,7 @@ services:
         --control-san-prefix sandbox-runner --world-readable &&
         chown -R sandbox-api:sandbox-api /tls/api && chmod -R a+rX /tls &&
         mkdir -p /data &&
-        printf '%s\n' "Service URL (from n8n / Tailscale): http://100.111.166.3:3200" "Service URL (LAN): http://umbrel.local:3200" "API key: 3sX5P7l6Q-2jpzpLSdoglRXmQvG1lwRjoT5L1uFwxEA" "Health: curl http://100.111.166.3:3200/healthz" > /data/CONNECTION.txt
+        printf '%s\n' "Service URL (Tailscale): http://100.111.166.3:3200" "Service URL (LAN): http://umbrel.local:3200" "API key: 3sX5P7l6Q-2jpzpLSdoglRXmQvG1lwRjoT5L1uFwxEA" "Health: curl -sf http://100.111.166.3:3200/healthz" > /data/CONNECTION.txt
     environment:
       NUM_RUNNERS: "1"
     volumes:
@@ -24,13 +24,12 @@ services:
       - ${APP_DATA_DIR}/data:/data
 
   api:
-    image: ghcr.io/n8n-io/n8n-sandbox-service-api:1.4.0
+    image: ghcr.io/n8n-io/n8n-sandbox-service-api:1.3.4
+    hostname: sandbox-api
     restart: on-failure
     depends_on:
       certs:
         condition: service_completed_successfully
-    ports:
-      - "3200:8080"
     environment:
       SANDBOX_API_KEYS: "3sX5P7l6Q-2jpzpLSdoglRXmQvG1lwRjoT5L1uFwxEA"
       SANDBOX_API_RUNNER_REGISTRATION_TOKEN: "3leLCCGj0meWgDd4omg6BOkZ19zyYYWoJMfWtFwgK7I"
@@ -44,21 +43,20 @@ services:
       SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_SERVER_NAME: sandbox-runner-1
     volumes:
       - ${APP_DATA_DIR}/tls:/tls:ro
-      - ${APP_DATA_DIR}/api-data:/var/lib/n8n-sandbox-api
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:8080/healthz"]
       interval: 5s
       timeout: 3s
-      retries: 12
-      start_period: 15s
+      retries: 30
+      start_period: 20s
 
   runner:
-    image: ghcr.io/n8n-io/n8n-sandbox-service-runner-dind:1.4.0
+    image: ghcr.io/n8n-io/n8n-sandbox-service-runner-dind:1.3.4
+    hostname: sandbox-runner-1
     restart: on-failure
     privileged: true
     depends_on:
-      api:
-        condition: service_healthy
+      - api
     environment:
       SANDBOX_RUNNER_REGISTRATION_TOKEN: "3leLCCGj0meWgDd4omg6BOkZ19zyYYWoJMfWtFwgK7I"
       SANDBOX_RUNNER_API_KEYS: "MkgJSBiiZ3EDqqLlAjMKkqKNZF_fLHTpP-olZB27CgM"
@@ -67,7 +65,7 @@ services:
       SANDBOX_RUNNER_CONTROL_GRPC_LISTEN_ADDR: ":9091"
       SANDBOX_RUNNER_CONTROL_GRPC_ADVERTISE_ADDR: deepak-n8n-sandbox_runner_1:9091
       SANDBOX_RUNNER_ID: runner-1
-      SANDBOX_RUNNER_DOCKER_SANDBOX_IMAGE: ghcr.io/n8n-io/n8n-sandbox-service-sandbox:1.4.0
+      SANDBOX_RUNNER_DOCKER_SANDBOX_IMAGE: ghcr.io/n8n-io/n8n-sandbox-service-sandbox:1.3.4
       SANDBOX_RUNNER_REGISTRATION_GRPC_CA_FILE: /tls/runner/ca.crt
       SANDBOX_RUNNER_REGISTRATION_GRPC_CERT_FILE: /tls/runner/grpc-client.crt
       SANDBOX_RUNNER_REGISTRATION_GRPC_KEY_FILE: /tls/runner/grpc-client.key
