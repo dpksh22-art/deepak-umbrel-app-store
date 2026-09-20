@@ -1,0 +1,40 @@
+manifestVersion: 1
+id: deepak-n8n-sandbox
+name: n8n Sandbox
+tagline: Code sandbox for n8n Assistant (self-hosted)
+icon: https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png
+category: developer
+version: "1.4.0"
+port: 3200
+description: >-
+  Self-hosted n8n Sandbox Service (API + privileged Docker-in-Docker runner)
+  for n8n Assistant on Umbrel.
+
+
+  After install, in n8n open Settings → n8n Assistant → Add a code sandbox →
+  n8n Sandbox, and set:
+
+
+  - Service URL: http://100.111.166.3:3200 (or http://umbrel.local:3200 on LAN)
+
+
+  - API key: see the CONNECTION.txt file in this app's data folder, or ask
+    Server engineer
+
+
+  Requires a model provider API key in n8n Assistant as well (Anthropic / OpenAI
+  / OpenRouter). This stack is intended for home/Tailscale use; the runner is
+  privileged Docker-in-Docker.
+developer: n8n (packaged by Deepak)
+website: https://docs.n8n.io/deploy/host-n8n/configure-n8n/set-up-n8n-assistant/
+submitter: Deepak Sahu
+submission: https://github.com/n8n-io/n8n-sandbox-service
+repo: https://github.com/n8n-io/n8n-sandbox-service
+support: https://github.com/n8n-io/n8n-sandbox-service/issues
+gallery: []
+releaseNotes: >-
+  Initial packaging of n8n-sandbox-service 1.4.0 for Umbrel (port 3200).
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""

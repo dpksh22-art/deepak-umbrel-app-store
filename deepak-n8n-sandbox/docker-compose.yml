@@ -1,0 +1,79 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: deepak-n8n-sandbox_api_1
+      APP_PORT: 8080
+
+  certs:
+    image: ghcr.io/n8n-io/n8n-sandbox-service-api:1.4.0
+    user: "0:0"
+    entrypoint: ["sh", "-c"]
+    command:
+      - >
+        bootstrap-mtls.sh --out-dir /tls --api-san sandbox-api
+        --control-san-prefix sandbox-runner --world-readable &&
+        chown -R sandbox-api:sandbox-api /tls/api && chmod -R a+rX /tls &&
+        mkdir -p /data &&
+        printf '%s\n' "Service URL (from n8n / Tailscale): http://100.111.166.3:3200" "Service URL (LAN): http://umbrel.local:3200" "API key: 3sX5P7l6Q-2jpzpLSdoglRXmQvG1lwRjoT5L1uFwxEA" "Health: curl http://100.111.166.3:3200/healthz" > /data/CONNECTION.txt
+    environment:
+      NUM_RUNNERS: "1"
+    volumes:
+      - ${APP_DATA_DIR}/tls:/tls
+      - ${APP_DATA_DIR}/data:/data
+
+  api:
+    image: ghcr.io/n8n-io/n8n-sandbox-service-api:1.4.0
+    restart: on-failure
+    depends_on:
+      certs:
+        condition: service_completed_successfully
+    ports:
+      - "3200:8080"
+    environment:
+      SANDBOX_API_KEYS: "3sX5P7l6Q-2jpzpLSdoglRXmQvG1lwRjoT5L1uFwxEA"
+      SANDBOX_API_RUNNER_REGISTRATION_TOKEN: "3leLCCGj0meWgDd4omg6BOkZ19zyYYWoJMfWtFwgK7I"
+      SANDBOX_API_RUNNER_API_KEY: "MkgJSBiiZ3EDqqLlAjMKkqKNZF_fLHTpP-olZB27CgM"
+      SANDBOX_API_GRPC_TLS_CERT_FILE: /tls/api/grpc-server.crt
+      SANDBOX_API_GRPC_TLS_KEY_FILE: /tls/api/grpc-server.key
+      SANDBOX_API_GRPC_TLS_CLIENT_CA_FILE: /tls/api/ca.crt
+      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_CA_FILE: /tls/api/ca.crt
+      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_CERT_FILE: /tls/api/control-grpc-api-client.crt
+      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_KEY_FILE: /tls/api/control-grpc-api-client.key
+      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_SERVER_NAME: sandbox-runner-1
+    volumes:
+      - ${APP_DATA_DIR}/tls:/tls:ro
+      - ${APP_DATA_DIR}/api-data:/var/lib/n8n-sandbox-api
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 15s
+
+  runner:
+    image: ghcr.io/n8n-io/n8n-sandbox-service-runner-dind:1.4.0
+    restart: on-failure
+    privileged: true
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      SANDBOX_RUNNER_REGISTRATION_TOKEN: "3leLCCGj0meWgDd4omg6BOkZ19zyYYWoJMfWtFwgK7I"
+      SANDBOX_RUNNER_API_KEYS: "MkgJSBiiZ3EDqqLlAjMKkqKNZF_fLHTpP-olZB27CgM"
+      SANDBOX_RUNNER_API_GRPC_ADDR: deepak-n8n-sandbox_api_1:9090
+      SANDBOX_RUNNER_HTTP_BASE_URL: https://deepak-n8n-sandbox_runner_1:8080
+      SANDBOX_RUNNER_CONTROL_GRPC_LISTEN_ADDR: ":9091"
+      SANDBOX_RUNNER_CONTROL_GRPC_ADVERTISE_ADDR: deepak-n8n-sandbox_runner_1:9091
+      SANDBOX_RUNNER_ID: runner-1
+      SANDBOX_RUNNER_DOCKER_SANDBOX_IMAGE: ghcr.io/n8n-io/n8n-sandbox-service-sandbox:1.4.0
+      SANDBOX_RUNNER_REGISTRATION_GRPC_CA_FILE: /tls/runner/ca.crt
+      SANDBOX_RUNNER_REGISTRATION_GRPC_CERT_FILE: /tls/runner/grpc-client.crt
+      SANDBOX_RUNNER_REGISTRATION_GRPC_KEY_FILE: /tls/runner/grpc-client.key
+      SANDBOX_RUNNER_REGISTRATION_GRPC_SERVER_NAME: sandbox-api
+      SANDBOX_RUNNER_CONTROL_GRPC_TLS_CERT_FILE: /tls/runner/control-grpc-server.crt
+      SANDBOX_RUNNER_CONTROL_GRPC_TLS_KEY_FILE: /tls/runner/control-grpc-server.key
+      SANDBOX_RUNNER_CONTROL_GRPC_TLS_CLIENT_CA_FILE: /tls/runner/ca.crt
+    volumes:
+      - ${APP_DATA_DIR}/tls:/tls:ro
