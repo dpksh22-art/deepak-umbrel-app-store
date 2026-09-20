@@ -16,7 +16,7 @@ services:
         --control-san-prefix sandbox-runner --world-readable &&
         chown -R sandbox-api:sandbox-api /tls/api && chmod -R a+rX /tls &&
         mkdir -p /data &&
-        printf '%s\n' "Service URL (Tailscale): http://100.111.166.3:3200" "Service URL (LAN): http://umbrel.local:3200" "API key: 3sX5P7l6Q-2jpzpLSdoglRXmQvG1lwRjoT5L1uFwxEA" "Health: curl -sf http://100.111.166.3:3200/healthz" > /data/CONNECTION.txt
+        printf '%s\n' "Service URL (Tailscale): http://100.111.166.3:3200" "Service URL (LAN): http://umbrel.local:3200" "API key: z5hQ-OHNRmQuXiXYadko-RL1IWBZLINkgzRmzEnycrY" "Health: curl -sf http://100.111.166.3:3200/healthz" > /data/CONNECTION.txt
     environment:
       NUM_RUNNERS: "1"
     volumes:
@@ -31,9 +31,9 @@ services:
       certs:
         condition: service_completed_successfully
     environment:
-      SANDBOX_API_KEYS: "3sX5P7l6Q-2jpzpLSdoglRXmQvG1lwRjoT5L1uFwxEA"
-      SANDBOX_API_RUNNER_REGISTRATION_TOKEN: "3leLCCGj0meWgDd4omg6BOkZ19zyYYWoJMfWtFwgK7I"
-      SANDBOX_API_RUNNER_API_KEY: "MkgJSBiiZ3EDqqLlAjMKkqKNZF_fLHTpP-olZB27CgM"
+      SANDBOX_API_KEYS: "z5hQ-OHNRmQuXiXYadko-RL1IWBZLINkgzRmzEnycrY"
+      SANDBOX_API_RUNNER_REGISTRATION_TOKEN: "B_hhISlHZPQNulpe8oY9qr3oGSvVCnMehaF2V1Kqt_Y"
+      SANDBOX_API_RUNNER_API_KEY: "rIZEabUWYG99FPLzvnNDg0Z-aUgzh2UnmaS5eUuZQQE"
       SANDBOX_API_GRPC_TLS_CERT_FILE: /tls/api/grpc-server.crt
       SANDBOX_API_GRPC_TLS_KEY_FILE: /tls/api/grpc-server.key
       SANDBOX_API_GRPC_TLS_CLIENT_CA_FILE: /tls/api/ca.crt
@@ -58,8 +58,8 @@ services:
     depends_on:
       - api
     environment:
-      SANDBOX_RUNNER_REGISTRATION_TOKEN: "3leLCCGj0meWgDd4omg6BOkZ19zyYYWoJMfWtFwgK7I"
-      SANDBOX_RUNNER_API_KEYS: "MkgJSBiiZ3EDqqLlAjMKkqKNZF_fLHTpP-olZB27CgM"
+      SANDBOX_RUNNER_REGISTRATION_TOKEN: "B_hhISlHZPQNulpe8oY9qr3oGSvVCnMehaF2V1Kqt_Y"
+      SANDBOX_RUNNER_API_KEYS: "rIZEabUWYG99FPLzvnNDg0Z-aUgzh2UnmaS5eUuZQQE"
       SANDBOX_RUNNER_API_GRPC_ADDR: deepak-n8n-sandbox_api_1:9090
       SANDBOX_RUNNER_HTTP_BASE_URL: https://deepak-n8n-sandbox_runner_1:8080
       SANDBOX_RUNNER_CONTROL_GRPC_LISTEN_ADDR: ":9091"
