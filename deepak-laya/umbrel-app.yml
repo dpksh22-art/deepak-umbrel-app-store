@@ -4,7 +4,7 @@ name: Laya
 tagline: Jev-compatible System-1 decision engine (CPU)
 icon: https://raw.githubusercontent.com/NandhaKishorM/laya/main/assets/logo-mark.svg
 category: ai
-version: "0.3.21"
+version: "0.3.21-r1"
 port: 8783
 description: >-
   Laya is a multilingual, non-autoregressive System 1 decision engine. It answers
@@ -38,9 +38,9 @@ support: https://github.com/NandhaKishorM/laya/issues
 gallery:
   - https://raw.githubusercontent.com/NandhaKishorM/laya/main/assets/logo-mark.svg
 releaseNotes: >-
-  Use prebuilt ghcr.io/dpksh22-art/laya:0.3.21 so Umbrel can install without a
-  local Docker build (build context is broken under Umbrel's compose merge).
-  Model cache persists under app data. Port 8783 via app proxy.
+  Fix PermissionError on model-cache: run the server as root (user 0:0) so the
+  Umbrel-owned APP_DATA_DIR volume is writable during LAYA_PRELOAD. Image remains
+  ghcr.io/dpksh22-art/laya:0.3.21. Port 8783 via app proxy.
 dependencies: []
 path: ""
 defaultUsername: ""

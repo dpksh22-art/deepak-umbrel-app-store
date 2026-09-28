@@ -11,6 +11,10 @@ services:
     # docker-compose.common.yml first and does not set --project-directory, so
     # `build: .` looks for Dockerfile in the wrong place and fails immediately.
     image: ghcr.io/dpksh22-art/laya:0.3.21
+    # Umbrel APP_DATA_DIR mounts are typically owned by root/uid 1000; the image
+    # defaults to uid 10001 (laya) which cannot write model-cache. Run as root
+    # for this home-lab package so HF preload can populate the volume.
+    user: "0:0"
     restart: on-failure
     stop_grace_period: 1m
     environment:
@@ -28,6 +32,7 @@ services:
       # LAYA_API_KEY: ""
       TORCH_DISABLE_NATIVE_JIT: "1"
       HF_HOME: /home/laya/.cache/huggingface
+      HOME: /home/laya
     volumes:
       - ${APP_DATA_DIR}/model-cache:/home/laya/.cache/huggingface
     healthcheck:
