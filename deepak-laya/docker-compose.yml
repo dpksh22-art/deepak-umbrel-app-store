@@ -7,7 +7,10 @@ services:
       APP_PORT: 8000
 
   server:
-    build: .
+    # Prebuilt CPU image (GHA → GHCR). Umbrel merges compose files with
+    # docker-compose.common.yml first and does not set --project-directory, so
+    # `build: .` looks for Dockerfile in the wrong place and fails immediately.
+    image: ghcr.io/dpksh22-art/laya:0.3.21
     restart: on-failure
     stop_grace_period: 1m
     environment:

@@ -1,5 +1,6 @@
 # Umbrel community package: CPU laya-serve (Jev-compatible POST /v1/systemone).
-# Built from PyPI; no GPU assumed. First install downloads checkpoints from Hugging Face.
+# Built from PyPI by GitHub Actions → ghcr.io/dpksh22-art/laya (no GPU).
+# First container start downloads checkpoints from Hugging Face.
 # Upstream: https://github.com/NandhaKishorM/laya (docs/docker.md)
 FROM python:3.11-slim-bookworm
 

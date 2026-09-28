@@ -12,14 +12,14 @@ description: >-
   forward pass, with a router that picks the English or multilingual checkpoint.
 
 
-  This Umbrel package runs laya-serve (CPU) and exposes the Jev-compatible
-  HTTP API: POST /v1/systemone and GET /health.
+  This Umbrel package runs laya-serve (CPU) from the prebuilt community image
+  ghcr.io/dpksh22-art/laya and exposes the Jev-compatible HTTP API:
+  POST /v1/systemone and GET /health.
 
 
-  First install builds the Docker image (PyTorch CPU + laya[serve]) and may take
-  several minutes. With LAYA_PRELOAD=1 the first start also downloads checkpoints
-  from Hugging Face into the model-cache volume — allow ~8 GB RAM and ~10 GB disk
-  (upstream Docker quickstart). Subsequent starts reuse the cache.
+  First start with LAYA_PRELOAD=1 downloads checkpoints from Hugging Face into
+  the model-cache volume — allow ~8 GB RAM and ~10 GB disk (upstream Docker
+  quickstart). Subsequent starts reuse the cache.
 
 
   Optional: set LAYA_API_KEY in the compose environment to require
@@ -38,8 +38,9 @@ support: https://github.com/NandhaKishorM/laya/issues
 gallery:
   - https://raw.githubusercontent.com/NandhaKishorM/laya/main/assets/logo-mark.svg
 releaseNotes: >-
-  Community packaging of Laya 0.3.21 laya-serve for CPU on Umbrel. Builds from
-  PyPI; model cache persists under app data. Port 8783 via app proxy.
+  Use prebuilt ghcr.io/dpksh22-art/laya:0.3.21 so Umbrel can install without a
+  local Docker build (build context is broken under Umbrel's compose merge).
+  Model cache persists under app data. Port 8783 via app proxy.
 dependencies: []
 path: ""
 defaultUsername: ""
