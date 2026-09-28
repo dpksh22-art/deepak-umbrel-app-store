@@ -1,0 +1,46 @@
+manifestVersion: 1
+id: deepak-laya
+name: Laya
+tagline: Jev-compatible System-1 decision engine (CPU)
+icon: https://raw.githubusercontent.com/NandhaKishorM/laya/main/assets/logo-mark.svg
+category: ai
+version: "0.3.21"
+port: 8783
+description: >-
+  Laya is a multilingual, non-autoregressive System 1 decision engine. It answers
+  typed choice, score, and yes/no (noul) questions over any text in a single
+  forward pass, with a router that picks the English or multilingual checkpoint.
+
+
+  This Umbrel package runs laya-serve (CPU) and exposes the Jev-compatible
+  HTTP API: POST /v1/systemone and GET /health.
+
+
+  First install builds the Docker image (PyTorch CPU + laya[serve]) and may take
+  several minutes. With LAYA_PRELOAD=1 the first start also downloads checkpoints
+  from Hugging Face into the model-cache volume — allow ~8 GB RAM and ~10 GB disk
+  (upstream Docker quickstart). Subsequent starts reuse the cache.
+
+
+  Optional: set LAYA_API_KEY in the compose environment to require
+  Authorization: Bearer <key>. Behind Umbrel's app proxy, leave it unset for
+  LAN/Tailscale use unless you want an extra key.
+
+
+  Source: https://github.com/NandhaKishorM/laya · Docs:
+  https://nandhakishorm.github.io/laya/docker/
+developer: Convai Innovations
+website: https://nandhakishorm.github.io/laya/
+submitter: Deepak Sahu
+submission: https://github.com/NandhaKishorM/laya
+repo: https://github.com/NandhaKishorM/laya
+support: https://github.com/NandhaKishorM/laya/issues
+gallery:
+  - https://raw.githubusercontent.com/NandhaKishorM/laya/main/assets/logo-mark.svg
+releaseNotes: >-
+  Community packaging of Laya 0.3.21 laya-serve for CPU on Umbrel. Builds from
+  PyPI; model cache persists under app data. Port 8783 via app proxy.
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""

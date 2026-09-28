@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: deepak-laya_server_1
+      APP_PORT: 8000
+
+  server:
+    build: .
+    restart: on-failure
+    stop_grace_period: 1m
+    environment:
+      LAYA_HOST: "0.0.0.0"
+      LAYA_PORT: "8000"
+      LAYA_DEVICE: "cpu"
+      LAYA_PRELOAD: "1"
+      LAYA_MODELS: "english,multilingual"
+      LAYA_THREADS: "4"
+      OMP_NUM_THREADS: "4"
+      LAYA_MAX_LOADED: "2"
+      LAYA_AUTO_TASK: "0"
+      LAYA_LOG_LEVEL: "info"
+      # Optional: set to require Authorization: Bearer <key>
+      # LAYA_API_KEY: ""
+      TORCH_DISABLE_NATIVE_JIT: "1"
+      HF_HOME: /home/laya/.cache/huggingface
+    volumes:
+      - ${APP_DATA_DIR}/model-cache:/home/laya/.cache/huggingface
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import os, urllib.request; urllib.request.urlopen('http://127.0.0.1:' + os.environ.get('LAYA_PORT', '8000') + '/health', timeout=4)",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10m
