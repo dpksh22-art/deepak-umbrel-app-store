@@ -38,4 +38,4 @@ image USER is uid 10001 (`laya`), which cannot write that mount and crashes on
 `LAYA_PRELOAD` with `PermissionError` under `/home/laya/.cache/huggingface/hub`.
 
 `docker-compose.yml` sets `user: "0:0"` for this home-lab package so preload can
-populate the cache. Documented in umbrel-app.yml release notes (0.3.21-r1).
+populate the cache. Documented in umbrel-app.yml release notes (0.3.22).
