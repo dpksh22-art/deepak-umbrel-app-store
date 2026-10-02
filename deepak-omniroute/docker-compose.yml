@@ -8,6 +8,7 @@ services:
 
   server:
     image: diegosouzapw/omniroute:next@sha256:8d38150fa55b6f499a408a469e7f715a1c9f90be4b97c7fb2b023796ac29633e
+    user: "0:0"
     restart: on-failure
     stop_grace_period: 40s
     environment:
