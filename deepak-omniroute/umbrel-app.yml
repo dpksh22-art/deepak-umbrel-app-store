@@ -4,7 +4,7 @@ name: OmniRoute
 tagline: Free AI gateway — one endpoint, 350+ providers
 icon: https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/public/icon-512.png
 category: ai
-version: "3.8.50"
+version: "3.8.52-next"
 port: 20129
 description: >-
   Never stop coding. OmniRoute is a free MIT AI gateway with one OpenAI-compatible
@@ -32,8 +32,9 @@ support: https://github.com/diegosouzapw/OmniRoute/issues
 gallery:
   - https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/public/icon-512.png
 releaseNotes: >-
-  Community packaging of OmniRoute v3.8.50 (diegosouzapw/omniroute) for the Deepak
-  Umbrel App Store. Dashboard and API on port 20129.
+  OmniRoute 3.8.52 pre-release (diegosouzapw/omniroute:next, built 2026-10-01 from
+  the release/v3.8.52 branch, pinned by digest). Upstream has not published a
+  stable 3.8.52 tag yet. Dashboard and API on port 20129.
 dependencies: []
 path: ""
 defaultUsername: ""

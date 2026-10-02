@@ -7,7 +7,7 @@ services:
       APP_PORT: 20128
 
   server:
-    image: diegosouzapw/omniroute:3.8.50@sha256:085c57adf499a8aaa9f35ccde95c0df9c11bd9ecd18d6c9edbf3b68b8079ba9d
+    image: diegosouzapw/omniroute:next@sha256:8d38150fa55b6f499a408a469e7f715a1c9f90be4b97c7fb2b023796ac29633e
     restart: on-failure
     stop_grace_period: 40s
     environment:
