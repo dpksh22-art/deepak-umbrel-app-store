@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: deepak-clixad_web_1
+      APP_PORT: 7681
+
+  web:
+    # Prebuilt multi-arch image (GHA → GHCR). Umbrel cannot `build:` community apps.
+    image: ghcr.io/dpksh22-art/clixad:0.0.1-beta.24
+    # Root shell so the Umbrel-owned APP_DATA_DIR volumes are writable.
+    user: "0:0"
+    restart: on-failure
+    stop_grace_period: 10s
+    init: true
+    environment:
+      HOME: /root
+      TERM: xterm-256color
+      # Set CLIXAD_SPONSOR to "0" to hide sponsor ads (unset by default).
+    volumes:
+      - ${APP_DATA_DIR}/data/home:/root
+      - ${APP_DATA_DIR}/data/workspace:/workspace

@@ -1,0 +1,43 @@
+manifestVersion: 1
+id: deepak-clixad
+name: Clixad
+tagline: Terminal AI coding agent in your browser
+icon: https://github.com/FlosGit.png
+category: developer
+version: "0.0.1-beta.24"
+port: 7681
+description: >-
+  Clixad is a terminal AI coding agent (Ink TUI). This package runs it inside a
+  browser terminal (ttyd) on your Umbrel, with git, curl, nano and python3
+  preinstalled.
+
+
+  First run: open the app, run `clixad login` (GitHub device flow), then
+  `mkdir -p /workspace/my-project && cd /workspace/my-project && git init && clixad`.
+  Clixad must be run inside a git repository.
+
+
+  Your login token ($HOME) and /workspace are stored in the app data directory
+  and survive restarts and updates. To hide sponsor ads, run
+  `export CLIXAD_SPONSOR=0` (or add it to ~/.bashrc).
+
+
+  Security: the terminal is a root shell inside the container. Umbrel login
+  (app proxy auth) protects it — keep it enabled.
+
+
+  Source: https://github.com/FlosGit/Clixad · npm: https://www.npmjs.com/package/clixad
+developer: FlosGit
+website: https://github.com/FlosGit/Clixad
+submitter: Deepak Sahu
+submission: https://github.com/FlosGit/Clixad
+repo: https://github.com/FlosGit/Clixad
+support: https://github.com/FlosGit/Clixad/issues
+gallery: []
+releaseNotes: >-
+  Initial package: clixad 0.0.1-beta.24 on node:22-bookworm-slim with ttyd 1.7.7
+  (writable browser terminal) via prebuilt image ghcr.io/dpksh22-art/clixad.
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
