@@ -1,7 +1,7 @@
 manifestVersion: 1
 id: deepak-deepseek-harness
 name: DeepSeek Harness
-tagline: DeepSeek's agent harness (dsh) web UI — coding agent with tools and workspaces
+tagline: DeepSeek agent harness (dsh) web UI - coding agent with tools and workspaces
 icon: https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/master/apps/desktop/resources/icon.png
 category: ai
 version: "0.2.0-rc.2"
