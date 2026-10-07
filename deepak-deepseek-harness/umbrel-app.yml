@@ -1,0 +1,49 @@
+manifestVersion: 1
+id: deepak-deepseek-harness
+name: DeepSeek Harness
+tagline: DeepSeek's agent harness (dsh) web UI — coding agent with tools and workspaces
+icon: https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/master/apps/desktop/resources/icon.png
+category: ai
+version: "0.2.0-rc.2"
+port: 8792
+description: >-
+  DeepSeek Harness (dsh) is DeepSeek's open-source agent harness: a Cordis
+  plugin-based coding and general-purpose agent with a file/shell tool set,
+  sessions, workspaces and a browser UI.
+
+
+  This Umbrel package runs `dsh web` from @deepseek-ai/dsh 0.2.0-rc.2 in the
+  prebuilt community image ghcr.io/dpksh22-art/deepseek-harness. dsh only
+  listens on loopback and protects its UI with a random per-launch token; a
+  small bundled proxy exposes it to Umbrel's app proxy and signs the browser in
+  automatically, so after the normal Umbrel login, clicking the icon opens dsh
+  directly. dsh's own Host/Origin (CSRF) checks stay enabled.
+
+
+  Data lives in the app data directory: data/home (dsh home: profiles,
+  provider config in profiles/web/cordis.patch.yml, sessions, credentials),
+  data/workspace (files the agent works on, mounted at /workspace) and
+  data/secrets/dsh.env (optional KEY=VALUE API keys such as DEEPSEEK_API_KEY
+  or a custom provider's key, loaded into dsh's environment; never part of
+  this repository). Restart the app after changing them.
+
+
+  The agent's shell tool runs inside the container (Landlock sandbox; no
+  host access beyond the mounted folders). CLI:
+  `docker exec -it -u node deepak-deepseek-harness_web_1 dsh-cli --profile headless`.
+developer: DeepSeek AI
+website: https://github.com/deepseek-ai/deepseek-harness
+submitter: Deepak Sahu
+submission: https://github.com/dpksh22-art/deepak-umbrel-app-store
+repo: https://github.com/deepseek-ai/deepseek-harness
+support: https://github.com/deepseek-ai/deepseek-harness/issues
+gallery:
+  - https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/master/apps/desktop/resources/icon.png
+releaseNotes: >-
+  Initial Umbrel package: dsh 0.2.0-rc.2 web UI on port 8792 with automatic
+  sign-in behind Umbrel login, persistent home/workspace, and optional API keys
+  from data/secrets/dsh.env.
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""

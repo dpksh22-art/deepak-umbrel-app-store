@@ -17,5 +17,6 @@ https://github.com/dpksh22-art/deepak-umbrel-app-store
 | Laya | `deepak-laya` | ghcr.io/dpksh22-art/laya:0.3.21 CPU · port 8783 · POST /v1/systemone |
 | Clixad | `deepak-clixad` | ghcr.io/dpksh22-art/clixad · browser terminal (ttyd) · port 7681 |
 | n8n Sandbox | `deepak-n8n-sandbox` | n8n Assistant code sandbox · port 3200 |
+| DeepSeek Harness | `deepak-deepseek-harness` | ghcr.io/dpksh22-art/deepseek-harness:0.2.0-rc.2 · dsh web UI, auto sign-in behind Umbrel login · port 8792 |
 
 OpenMAIC, God's Eye View, and Laya use prebuilt images (Umbrel cannot reliably `build:` community apps). Laya's first start may download Hugging Face checkpoints (~10 GB disk, ~8 GB RAM). OpenSEO needs a DataForSEO API key for SEO data.

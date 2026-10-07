@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: deepak-deepseek-harness_web_1
+      APP_PORT: 3080
+
+  web:
+    # Prebuilt image (GitHub Actions -> GHCR); Umbrel cannot use `build:`.
+    image: ghcr.io/dpksh22-art/deepseek-harness:0.2.0-rc.2
+    # Starts as root to fix volume ownership, then drops to uid 1000 (node).
+    user: "0:0"
+    init: true
+    restart: on-failure
+    stop_grace_period: 30s
+    mem_limit: 6g
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      DSH_HOME: /data/dsh
+      SHIM_PORT: "3080"
+      DSH_PORT: "3081"
+    volumes:
+      # dsh home: profiles (cordis.patch.yml provider config), sessions, credentials, logs
+      - ${APP_DATA_DIR}/data/home:/data/dsh
+      # files the agent works on
+      - ${APP_DATA_DIR}/data/workspace:/workspace
+      # optional secrets: data/secrets/dsh.env with KEY=VALUE lines (never committed)
+      - ${APP_DATA_DIR}/data/secrets:/run/dsh-secrets:ro

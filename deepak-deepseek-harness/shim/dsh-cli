@@ -1,0 +1,4 @@
+#!/bin/sh
+# Run the dsh CLI with the app's secrets loaded, e.g.
+#   docker exec -it -u node deepak-deepseek-harness_web_1 dsh-cli --profile headless
+exec node /opt/dsh-shim/shim.js exec dsh "$@"
