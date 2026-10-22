@@ -19,6 +19,6 @@ services:
     environment:
       KIROCREW_BIND: 0.0.0.0
       KIROCREW_TELEMETRY_DISABLED: "1"
-      KIROCREW_CORS_ORIGINS: http://100.111.166.3:8793,http://umbrel.local:8793,http://umbrel:8793,http://umbrel-1:8793,http://umbrel-1.tailcb02c4.ts.net:8793
+      KIROCREW_CORS_ORIGINS: http://100.111.166.3:8793,http://umbrel.local:8793,http://umbrel:8793,http://umbrel-1:8793,http://umbrel-1.tailcb02c4.ts.net:8793,http://192.168.31.200:8793
     volumes:
       - ${APP_DATA_DIR}/data/home:/home/kirocrew
