@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: deepak-kirocrew_web_1
+      APP_PORT: 5476
+
+  web:
+    # Official upstream image (public GHCR), pinned to 0.9.0 by digest.
+    image: ghcr.io/kirodotdev/kirocrew:0.9.0@sha256:108e6b94890ab6ce390d4f5103b096747a6b8eb51e7d020463641551e71ab94c
+    user: "1000:1000"
+    restart: on-failure
+    stop_grace_period: 30s
+    mem_limit: 4g
+    security_opt:
+      - seccomp:${APP_DATA_DIR}/kirocrew-seccomp.json
+      - apparmor:unconfined
+    environment:
+      KIROCREW_BIND: 0.0.0.0
+      KIROCREW_TELEMETRY_DISABLED: "1"
+      KIROCREW_CORS_ORIGINS: http://100.111.166.3:8793,http://umbrel.local:8793,http://umbrel-1:8793
+    volumes:
+      - ${APP_DATA_DIR}/data/home:/home/kirocrew

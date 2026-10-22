@@ -1,0 +1,39 @@
+manifestVersion: 1
+id: deepak-kirocrew
+name: KiroCrew
+tagline: Persistent, self-improving AI agent crew workspace (Kiro) - gateway dashboard
+icon: https://raw.githubusercontent.com/kirodotdev/KiroCrew/main/website/public/icon-512.png
+category: ai
+version: "0.9.0"
+port: 8793
+description: >-
+  KiroCrew is a persistent workspace for development work that self-improves
+  and continues beyond one session. This package runs the official KiroCrew
+  gateway image (ghcr.io/kirodotdev/kirocrew:0.9.0, pinned by digest):
+  headless dashboard plus optional Slack/Discord/Telegram channel bots.
+
+
+  The default agent backend is kiro-cli, which needs a one-time Kiro sign-in:
+  `sudo docker exec -it deepak-kirocrew_web_1 kiro-cli login`
+  (or put KIRO_API_KEY in the gateway .env). The dashboard requires a
+  KiroCrew token: `sudo docker exec deepak-kirocrew_web_1 kirocrew token --ttl 2h`
+  and open the printed link with host replaced by this app's address.
+
+
+  All state (gateway home, kiro-cli credentials, agents, skills) lives in
+  data/home in the app data directory. The vendor's seccomp profile is used so
+  the inner agent sandbox works.
+developer: Kiro (kirodotdev)
+website: https://github.com/kirodotdev/KiroCrew
+submitter: Deepak Sahu
+submission: https://github.com/dpksh22-art/deepak-umbrel-app-store
+repo: https://github.com/kirodotdev/KiroCrew
+support: https://github.com/kirodotdev/KiroCrew/issues
+gallery:
+  - https://raw.githubusercontent.com/kirodotdev/KiroCrew/main/website/public/icon-512.png
+releaseNotes: >-
+  Initial Umbrel package: KiroCrew gateway 0.9.0 (official image) on port 8793.
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
